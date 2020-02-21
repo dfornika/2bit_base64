@@ -8,6 +8,7 @@ import base64
 from pprint import pprint
 
 
+
 def char_to_bits(char):
     char_to_bits_dict = {
         'T': 0b00,
@@ -32,7 +33,14 @@ def four_bases_to_byte(four_bases):
         'TTCC': 0b00000101, # 0x05
         'TTCA': 0b00000110, # 0x06
         'TTCG': 0b00000110, # 0x07
-        
+        'TTAT': 0b00001000, # 0x08
+        'TTAC': 0b00001001, # 0x09
+        'TTAA': 0b00001010, # 0x0a
+        'TTAG': 0b00001011, # 0x0b
+        'TTGT': 0b00001100, # 0x0c
+        'TTGC': 0b00001101, # 0x0d
+        'TTGA': 0b00001110, # 0x0e
+        'TTGG': 0b00001111, # 0x0f
         'GGGG': 0b11111111, # 0xff
     }
     try:
@@ -69,6 +77,8 @@ def chunks(l, n):
         yield l[i:i + n]
 
 def main(args):
+    bases = {'A', 'C', 'G', 'T'}
+    four_mers = [b1 + b2 + b3 + b4 for b1 in bases for b2 in bases for b3 in bases for b4 in bases]
     seq = 'TTCGGGGGTTTGTTCCTTTAGGGG'
     chunked_seq = list(chunks(seq, 4))
     print(seq)
